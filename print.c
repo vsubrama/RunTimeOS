@@ -7,6 +7,10 @@ natural_t TerminalCursor = 0;
 
 void writeCharacter(character_t character,terminal_character_style_t style,natural_t position)
 {
+	if (TerminalCursor > (TerminalWidth * TerminalHeight))
+	{
+		clearscreen();
+	}
 	if (position == -1)
 	{
 		position = TerminalCursor;
@@ -31,10 +35,10 @@ void writeCharacter(character_t character,terminal_character_style_t style,natur
 	  	break;
 
 	  	default:
-	  	TerminalScreen[position] = character;
-	  	++position;
-	  	TerminalScreen[position] = 0x07;
-	  	TerminalCursor = position + 1;
+	  	TerminalScreen[TerminalCursor] = character;
+	  	++TerminalCursor;
+	  	TerminalScreen[TerminalCursor] = 0x07;
+	  	TerminalCursor = TerminalCursor + 1;
 	  	position = 0;
    }
 }
@@ -56,6 +60,7 @@ void clearscreen()
       writeCharacter(' ', terminal_character_style(TerminalWhite,TerminalBlack), index);
     }
     TerminalCursor = 0;
+    return;
 }
 
 void writeString(character_t *string_to_be_written,terminal_character_style_t style,natural_t position)

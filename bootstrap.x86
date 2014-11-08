@@ -41,3 +41,5 @@ start:
 	cli 				;block interrupts
 	call kmain
 	hlt 				;halt the CPU
+
+segment .data
