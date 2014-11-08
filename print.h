@@ -27,6 +27,7 @@ typedef enum {
 } terminal_color_t;
 
 void writeCharacter(character_t character, terminal_character_style_t style,natural_t position);
+void newline(void);
 void clearscreen(void);
 void writeString(character_t *character, terminal_character_style_t style,natural_t position);
 terminal_character_style_t 

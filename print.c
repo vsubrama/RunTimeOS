@@ -11,11 +11,41 @@ void writeCharacter(character_t character,terminal_character_style_t style,natur
 	{
 		position = TerminalCursor;
 	}
-  	TerminalScreen[position] = character;
-  	++position;
-  	TerminalScreen[position] = 0x07;
-  	TerminalCursor = position + 1;
-  	position = 0;
+	switch(character)
+	{
+		case '\n':
+			newline();
+		break;
+		
+		case '\t':
+		TerminalCursor = TerminalCursor + 8;
+		break;
+
+		case '\b':
+		TerminalScreen[position] = ' ';
+	  	--position;
+	  	TerminalScreen[position] = 0x07;
+	  	--position;
+	  	TerminalScreen[position] = ' ';
+	  	TerminalCursor = position;
+	  	break;
+
+	  	default:
+	  	TerminalScreen[position] = character;
+	  	++position;
+	  	TerminalScreen[position] = 0x07;
+	  	TerminalCursor = position + 1;
+	  	position = 0;
+   }
+}
+
+void newline()
+{
+	natural_t cursor_space_left = TerminalCursor % (TerminalWidth * 2);
+			if(cursor_space_left != 0 )
+			{
+				TerminalCursor = TerminalCursor + (TerminalWidth * 2) - cursor_space_left;
+			}
 }
 
 void clearscreen()
@@ -32,19 +62,9 @@ void writeString(character_t *string_to_be_written,terminal_character_style_t st
 {
 	for(natural_t index = 0; string_to_be_written[index] != '\0'; index++)
 	{
-		if (string_to_be_written[index] == '\n')
-		{
-			natural_t cursor_space_left = TerminalCursor % (TerminalWidth * 2);
-			if(cursor_space_left != 0 )
-			{
-				TerminalCursor = TerminalCursor + (TerminalWidth * 2) - cursor_space_left;
-			}
-		}
-		else
-		{
+		
 			writeCharacter(string_to_be_written[index], terminal_character_style(TerminalWhite,TerminalBlack), 
-						TerminalCursor);	
-		}
+						TerminalCursor);
 	}
 }
 
