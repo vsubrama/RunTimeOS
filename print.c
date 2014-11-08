@@ -7,10 +7,15 @@ natural_t TerminalCursor = 0;
 
 void writeCharacter(character_t character,terminal_character_style_t style,natural_t position)
 {
-  TerminalScreen[position] = character;
-  ++position;
-  TerminalScreen[position] = 0x07;
-  TerminalCursor = position + 1;
+	if (position == -1)
+	{
+		position = TerminalCursor;
+	}
+  	TerminalScreen[position] = character;
+  	++position;
+  	TerminalScreen[position] = 0x07;
+  	TerminalCursor = position + 1;
+  	position = 0;
 }
 
 void clearscreen()
@@ -20,6 +25,7 @@ void clearscreen()
     {
       writeCharacter(' ', terminal_character_style(TerminalWhite,TerminalBlack), index);
     }
+    TerminalCursor = 0;
 }
 
 void writeString(character_t *string_to_be_written,terminal_character_style_t style,natural_t position)

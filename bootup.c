@@ -1,4 +1,5 @@
 #include "print.h"
+#include "keyboard.h"
 
 void kmain(void)
 {
@@ -13,5 +14,10 @@ void kmain(void)
 	writeString(&tmp2[0],terminal_character_style(TerminalWhite,TerminalBlack),2);
 	//int index = 0;
 	//TerminalCursor = TerminalCursor + position;
-	
+	//interrupt_Enabler();
+	idt_init();
+	while(1)
+	{
+		//keyboard_handler_main();
+	}
 }

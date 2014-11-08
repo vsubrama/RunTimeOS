@@ -6,7 +6,7 @@ ASM_OBJECTS = $(ASM_SOURCES:.x86=.xo)
 BINARY = kernel.img
 
 CC = gcc
-CFLAGS = -m32 -Wall -Werror -std=c11 -fno-stack-protector -ffreestanding
+CFLAGS = -m32 -Wall -std=c11 -fno-stack-protector -ffreestanding
 ASM = nasm
 ASM_FLAGS = -f elf32
 LD = ld
