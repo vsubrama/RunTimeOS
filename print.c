@@ -68,7 +68,7 @@ void writeString(character_t *string_to_be_written,terminal_character_style_t st
 	for(natural_t index = 0; string_to_be_written[index] != '\0'; index++)
 	{
 		
-			writeCharacter(string_to_be_written[index], terminal_character_style(TerminalWhite,TerminalBlack), 
+			writeCharacter(string_to_be_written[index], style, 
 						TerminalCursor);
 	}
 }

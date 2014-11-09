@@ -18,8 +18,8 @@ void kmain(void)
 	//interrupt_Enabler();
 	idt_init();
 	memory_init();
-	char* tmp3 = (char*)malloc(4000000);
-	char* tmp4 = (char*)malloc(4000000);
+	char* tmp3 = (char*)malloc(400000);
+	char* tmp4 = (char*)malloc(400000);
 	tmp3[0] = 'a';
 	tmp3[1] = 'b';
 	tmp3[2] = '\n';
