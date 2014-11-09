@@ -1,6 +1,7 @@
 #include "types.h"
 
 typedef natural8_t terminal_character_style_t;
+extern void Kernel_main();
 
 typedef struct {
   character_t character;
