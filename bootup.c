@@ -12,12 +12,12 @@ void kmain(void)
 	writeString(&tmp[0],terminal_character_style(TerminalWhite,TerminalBlack),1);
 	writeString(&tmp1[0],terminal_character_style(TerminalWhite,TerminalBlack),2);
 	writeString(&tmp2[0],terminal_character_style(TerminalWhite,TerminalBlack),2);
-	//int index = 0;
-	//TerminalCursor = TerminalCursor + position;
-	//interrupt_Enabler();
+	
 	idt_init();
 	memory_init();
-	Kernel_main();
+	integer32_t Savant_Return_Value = Kernel_main(5);
+	char *Savant = Savant_Return_Value;
+	writeCharacter(&Savant,terminal_character_style(TerminalWhite,TerminalBlack),2);
 	/*char* tmp3 = (char*)malloc(400000);
 	char* tmp4 = (char*)malloc(400000);
 	tmp3[0] = 'a';

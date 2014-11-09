@@ -1,7 +1,7 @@
 #include "types.h"
 
 typedef natural8_t terminal_character_style_t;
-extern void Kernel_main();
+extern integer32_t Kernel_main(integer32_t input);
 
 typedef struct {
   character_t character;
